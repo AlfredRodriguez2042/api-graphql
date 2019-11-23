@@ -1,16 +1,17 @@
 export default `
 type Query {
   Users: [User!]
+  User(_id: ID): User!
 }
 
 type UserShort {
-  _id: ID
+  _id: String
   name: String
   thumbnail: String
 }
 
 type User {
-  _id: ID
+  _id: String
   name: String
   username: String
   email: String

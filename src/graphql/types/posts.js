@@ -1,10 +1,11 @@
 export default `
 type Query {
     Posts: [Post!]
+    Post(_id:ID): Post!
   }
   
   type Post {
-    _id: ID
+    _id: String
     title: String
     slug: String
     body: String

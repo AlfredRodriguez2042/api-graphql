@@ -2,11 +2,11 @@ export default `
 
   type Tag {
     _id: ID
-    name: String
+    name: String!
   }
 
   input TagInput {
-    name: String
+    name: String!
   }
 
-`
+`;

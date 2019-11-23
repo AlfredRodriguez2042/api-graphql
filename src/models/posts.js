@@ -1,5 +1,9 @@
 import { Schema, model } from 'mongoose'
+import { ObjectID } from 'mongodb'
 
+ObjectID.prototype.valueOf = function() {
+    return this.toString()
+  }
 
 const postSchema = new Schema({
     author: { type: Schema.Types.ObjectId, ref: 'User' },
