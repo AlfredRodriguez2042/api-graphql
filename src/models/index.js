@@ -3,7 +3,7 @@ import Tag from './tag'
 import Post from './posts'
 
 export default {
-    User,
-    Tag,
-    Post
+  User,
+  Tag,
+  Post
 }

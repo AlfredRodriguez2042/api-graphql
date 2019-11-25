@@ -2,3 +2,5 @@ node_modules
 .vscode
 
 --ext js, graphql
+
+notas.txt

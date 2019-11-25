@@ -3,7 +3,7 @@ type Query {
     Posts: [Post!]
     Post(_id:ID): Post!
   }
-  
+
   type Post {
     _id: String
     title: String
@@ -17,7 +17,7 @@ type Query {
     tags: [Tag!]
 
   }
-  
+
   type Mutation {
     createPost(input: PostInput): Post
     deletePost(_id:ID): Post
@@ -32,7 +32,4 @@ type Query {
     tags:[TagInput]
   }
 
- 
-
-  
-`;
+`

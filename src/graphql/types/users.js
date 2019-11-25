@@ -23,7 +23,7 @@ type User {
 type Mutation {
   createUser(input: UserInput): User
   deleteUser(_id:ID): User
-  
+
 }
 
 input UserInput {
@@ -34,7 +34,4 @@ input UserInput {
 }
 
 
-
-
-
-`;
+`
