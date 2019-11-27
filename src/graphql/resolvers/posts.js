@@ -7,6 +7,8 @@ export default {
 
     Posts: async (_, args, models) => {
       const posts = await models.Post.find()
+        .populate('tags')
+        .exec()
       return posts
     }
   },
@@ -24,7 +26,7 @@ export default {
         author,
         tags: tag
       })
-      console.log(tag)
+      console.log(tags)
       return post
     },
     async deletePost(_, { _id }, models) {
@@ -36,10 +38,6 @@ export default {
     author: async ({ author }, args, ctx) => {
       const auth = await ctx.User.findById(author)
       return auth
-    },
-    tags: async ({ tags }, arg, ctx) => {
-      const tag = await ctx.Tag.findById(tags)
-      return tag
     }
   }
 }

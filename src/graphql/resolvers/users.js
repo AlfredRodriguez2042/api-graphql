@@ -12,6 +12,7 @@ export default {
     Users: async (_, args, ctx) => {
       const user = await ctx.User.find({})
         .populate('posts')
+        .populate('tags')
         .exec()
       console.log(user)
       return user

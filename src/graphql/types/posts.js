@@ -10,19 +10,22 @@ type Query {
     slug: String
     body: String
     readingTime: String
-    author: User
+    author: UserShort
     language: String
     image: String
     published: Boolean
-    tags: [Tag!]
-
+    tags: [Tags!]
+  }
+  type PostShort {
+    _id: ID
+    title: String
+    slug: String
   }
 
   type Mutation {
     createPost(input: PostInput): Post
     deletePost(_id:ID): Post
   }
-
 
   input PostInput {
     title: String!

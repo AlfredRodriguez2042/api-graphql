@@ -15,7 +15,7 @@ type User {
   name: String
   username: String
   email: String
-  posts: [Post!]
+  posts: [PostShort!]
   password: String
 }
 

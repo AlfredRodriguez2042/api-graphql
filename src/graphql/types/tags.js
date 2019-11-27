@@ -1,8 +1,8 @@
 export default `
 
-  type Tag {
+  type Tags {
     _id: ID
-    name: String!
+    name: String
   }
 
   input TagInput {
