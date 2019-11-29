@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon src/index.js  --exec babel-node --ignore __test__",
-    "test": " cross-env NODE_ENV=test jest",
+    "test": " cross-env NODE_ENV=test jest --detectOpenHandles",
     "lint": "eslint src"
   },
   "author": "Alfredo Rodiguez",
@@ -15,7 +15,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run lint && npm test"
+      "pre-push": "npm run lint && npm test "
     }
   },
   "devDependencies": {
@@ -24,6 +24,7 @@
     "@babel/node": "^7.7.0",
     "@babel/preset-env": "^7.7.1",
     "apollo-server": "^2.9.11",
+    "axios": "^0.19.0",
     "babel-eslint": "^10.0.3",
     "cross-env": "^6.0.3",
     "eslint": "^6.7.0",

@@ -14,6 +14,7 @@ type Query {
     language: String
     image: String
     published: Boolean
+    createdAt: String
     tags: [Tags!]
   }
   type PostShort {
