@@ -1,7 +1,10 @@
+import User from '../../models/user'
+import Post from '../../models/posts'
+
 export default {
   Query: {
-    User: async (_, { _id }, ctx) => {
-      const user = await ctx.User.findById(_id)
+    User: async (_, { _id }) => {
+      const user = await User.findById(_id)
         .populate()
         .then(user => user)
         .catch(err => err)
@@ -9,8 +12,8 @@ export default {
       return user
     },
 
-    Users: async (_, args, ctx) => {
-      const user = await ctx.User.find({})
+    Users: async () => {
+      const user = await User.find()
         .populate('posts')
         .populate('tags')
         .exec()
@@ -19,18 +22,18 @@ export default {
     }
   },
   Mutation: {
-    createUser: async (_, { input }, ctx) => {
-      const user = await ctx.User.create(input)
+    createUser: async (_, { input }) => {
+      const user = await User.create(input)
       return user
     },
-    deleteUser: async (_, { _id }, ctx) => {
-      const user = await ctx.User.findByIdAndDelete(_id)
+    deleteUser: async (_, { _id }) => {
+      const user = await User.findByIdAndDelete(_id)
       return user
     }
   },
   User: {
-    posts: async ({ _id }, args, ctx) => {
-      const auth = await ctx.Post.find({ author: _id })
+    posts: async ({ _id }) => {
+      const auth = await Post.find({ author: _id })
       return auth
     }
   }

@@ -4,3 +4,4 @@ node_modules
 --ext js, graphql
 
 notas.txt
+.env
