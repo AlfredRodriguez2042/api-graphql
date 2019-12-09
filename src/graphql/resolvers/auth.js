@@ -2,7 +2,6 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import User from '../../models/user'
 import { loginValidator } from '../../utils/validation'
-import { AuthenticationError } from 'apollo-server'
 
 const createToken = payload => {
   const token = jwt.sign({ payload }, process.env.JWT_SECRET, {
