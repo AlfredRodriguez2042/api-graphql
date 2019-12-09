@@ -1,5 +1,6 @@
 import User from '../../models/user'
 import Post from '../../models/posts'
+import { validation } from '../../utils/validation'
 
 export default {
   Query: {
@@ -23,6 +24,11 @@ export default {
   },
   Mutation: {
     createUser: async (_, { input }) => {
+      const { error } = validation(input)
+      console.log(error)
+      if (error) {
+        throw new Error(`${error.message}`)
+      }
       const user = await User.create(input)
       return user
     },

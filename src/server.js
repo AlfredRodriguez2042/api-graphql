@@ -21,5 +21,5 @@ const schema = makeExecutableSchema({
 
 export const apolloServer = new ApolloServer({
   schema,
-  context: ({ request }) => ({ request })
+  context: request => ({ request })
 })
