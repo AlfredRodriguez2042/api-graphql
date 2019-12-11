@@ -6,7 +6,7 @@ type Query {
 
 type UserShort {
   _id: String!
-  name: String!
+  username: String!
   thumbnail: String
 }
 
@@ -19,7 +19,7 @@ type User {
   password: String
   privilege: String!
   active: Boolean
-  createAt: String
+  createdAt: String
 }
 
 type AuthPayload {

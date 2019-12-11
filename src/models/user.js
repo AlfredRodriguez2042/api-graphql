@@ -29,8 +29,8 @@ const userSchema = new Schema({
   },
   privilege: { type: String, default: 'regular', enum: ['regular', 'admin'] },
   active: { type: Boolean, default: false },
-  createdAt: { type: Date, default: Date.now() },
-  last_login_date: { type: Date, default: Date.now() },
+  createdAt: { type: Date, default: new Date() },
+  last_login_date: { type: Date, default: new Date() },
   posts: [{ type: Schema.Types.ObjectId, ref: 'Posts' }]
 })
 

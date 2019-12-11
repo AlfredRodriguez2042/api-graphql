@@ -9,7 +9,9 @@ export default {
         .populate()
         .then(user => user)
         .catch(err => err)
-      console.log(user)
+      if (!user) {
+        throw new Error(` The User ${_id} doesn´t exist`)
+      }
       return user
     },
 
@@ -25,7 +27,6 @@ export default {
   Mutation: {
     createUser: async (_, { input }) => {
       const { error } = validation(input)
-      console.log(error)
       if (error) {
         throw new Error(`${error.message}`)
       }

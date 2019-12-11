@@ -1,5 +1,7 @@
-import { apolloServer } from './server'
+import app, { apolloServer } from './server'
 
-apolloServer.listen(3000).then(({ url }) => {
-  console.log(` >>> 🚀  Server ready at ${url}`)
+app.listen({ port: 3000 }, () => {
+  console.log(
+    `🚀 Server ready at http://localhost:3000${apolloServer.graphqlPath}`
+  )
 })
