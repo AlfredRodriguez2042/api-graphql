@@ -4,6 +4,8 @@ import Tag from '../../models/tag'
 import { authenticated, checkAdmin } from '../../utils/auth'
 import { validationPost } from '../../utils/validation'
 
+const POST_ADDED = 'POST_ADDED'
+
 export default {
   Query: {
     Post: async (_, { _id }) => {
@@ -28,9 +30,9 @@ export default {
     async createPost(
       _,
       { input: { title, slug, body, author, tags } },
-      { request: { req } }
+      { pubsub }
     ) {
-      authenticated(req)
+      // authenticated(req)
       const { error } = validationPost({ title, slug, body, author, tags })
       if (error) {
         throw new Error(`${error.message}`)
@@ -43,6 +45,7 @@ export default {
         author,
         tags: tag
       })
+      pubsub.publish(POST_ADDED, { newPost: post })
       return post
     },
     async deletePost(_, { _id }, { request: { req } }) {
@@ -64,6 +67,13 @@ export default {
     author: async ({ author }) => {
       const postAuthor = await User.findById(author)
       return postAuthor
+    }
+  },
+  Subscription: {
+    newPost: {
+      subscribe: (_, __, { pubsub }) => {
+        return pubsub.asyncIterator(POST_ADDED)
+      }
     }
   }
 }

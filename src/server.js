@@ -1,4 +1,4 @@
-import { ApolloServer } from 'apollo-server-express'
+import { ApolloServer, PubSub } from 'apollo-server-express'
 import { makeExecutableSchema } from 'graphql-tools'
 import path from 'path'
 import { fileLoader, mergeTypes, mergeResolvers } from 'merge-graphql-schemas'
@@ -11,6 +11,7 @@ import { authMiddleware } from './middleware/auth'
 config()
 Connect()
 const app = express()
+const pubsub = new PubSub()
 const route = '/graphql'
 const typeDefs = mergeTypes(fileLoader(path.join(__dirname, './graphql/types')))
 const resolvers = mergeResolvers(
@@ -33,7 +34,7 @@ app.use(cookieParser())
 export const apolloServer = new ApolloServer({
   schema,
   introspection: true,
-  context: request => ({ request })
+  context: request => ({ request, pubsub })
 })
 apolloServer.applyMiddleware({ app, path: route, cors: corsOptions })
 export default app

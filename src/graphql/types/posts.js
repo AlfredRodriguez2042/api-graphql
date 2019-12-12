@@ -22,6 +22,9 @@ export default `
     title: String!
     slug: String!
   }
+  type Subscription {
+    newPost: Post!
+  }
 
   type Mutation {
     createPost(input: PostInput): Post!
