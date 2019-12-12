@@ -5,7 +5,7 @@ import { createToken } from '../../utils/utils'
 
 export default {
   Mutation: {
-    Login: async (parent, { input }, { request: { req, res } }) => {
+    Login: async (parent, { input }, { request: { res } }) => {
       const { email, password } = input
       const { error } = validationLogin(input)
       if (error) {
@@ -21,7 +21,6 @@ export default {
         throw new Error('Invalid email/password, try again')
       }
       const token = createToken(user._id, res)
-      console.log('cookie', req.cookie)
       return { user, token }
     }
   }

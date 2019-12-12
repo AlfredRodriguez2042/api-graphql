@@ -30,9 +30,9 @@ export default {
     async createPost(
       _,
       { input: { title, slug, body, author, tags } },
-      { pubsub }
+      { pubsub, request: { req } }
     ) {
-      // authenticated(req)
+      authenticated(req)
       const { error } = validationPost({ title, slug, body, author, tags })
       if (error) {
         throw new Error(`${error.message}`)

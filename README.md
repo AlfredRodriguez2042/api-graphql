@@ -1,6 +1,6 @@
 ## Node / Graphql / Mongodb / Apollo
 
-![UI](/grapthql.png?raw=true)
+![UI](/graphql.png?raw=true)
 
 ## Introduction
 
