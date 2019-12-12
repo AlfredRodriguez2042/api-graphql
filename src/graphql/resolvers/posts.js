@@ -1,14 +1,17 @@
 import Post from '../../models/posts'
 import User from '../../models/user'
 import Tag from '../../models/tag'
-import { AuthToken, authenticated } from '../../utils/auth'
+import { authenticated, checkAdmin } from '../../utils/auth'
+import { validationPost } from '../../utils/validation'
 
 export default {
   Query: {
     Post: async (_, { _id }) => {
       const post = await Post.findById(_id)
+      const { error } = post
+      console.log(error)
       if (!post) {
-        throw new Error(` The Post ${_id} doesn´t exist`)
+        throw new Error(` The Post ${_id} doesn't exist`)
       }
       return post
     },
@@ -27,9 +30,11 @@ export default {
       { input: { title, slug, body, author, tags } },
       { request: { req } }
     ) {
-      const un = authenticated(req)
-      console.log(req)
-      console.log(un)
+      authenticated(req)
+      const { error } = validationPost({ title, slug, body, author, tags })
+      if (error) {
+        throw new Error(`${error.message}`)
+      }
       const tag = await Tag.create(tags)
       const post = await Post.create({
         title,
@@ -46,6 +51,12 @@ export default {
       if (!post) {
         throw new Error('Action not allowed')
       }
+      return post
+    },
+    async deletePosts(_, { _id }, { request: { req } }) {
+      authenticated(req)
+      checkAdmin(req)
+      const post = await Post.findByIdAndDelete(_id)
       return post
     }
   },

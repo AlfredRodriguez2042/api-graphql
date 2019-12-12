@@ -26,7 +26,7 @@ const schema = makeExecutableSchema({
 })
 
 app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: true }))
 app.use(route, authMiddleware)
 app.use(cookieParser())
 

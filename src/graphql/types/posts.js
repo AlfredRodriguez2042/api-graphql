@@ -26,6 +26,7 @@ export default `
   type Mutation {
     createPost(input: PostInput): Post!
     deletePost(_id:ID): Post!
+    deletePosts(_id:ID): Post!
   }
 
   input PostInput {

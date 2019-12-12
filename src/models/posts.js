@@ -3,9 +3,9 @@ import { Schema, model } from 'mongoose'
 const postSchema = new Schema({
   author: { type: Schema.Types.ObjectId, ref: 'User' },
   title: { type: String, required: true },
-  slug: { type: String, unique: true },
+  slug: { type: String, unique: true, required: true },
   readingTime: { type: String, default: '3 min' },
-  body: { type: String },
+  body: { type: String, required: true },
   lenguage: { type: String, default: 'es', enum: ['es', 'en'] },
   image: { type: String },
   published: { type: Boolean, default: false },

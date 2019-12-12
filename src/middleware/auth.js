@@ -14,7 +14,6 @@ export async function authMiddleware(req, res, next) {
       req.headers.cookie.split('jwt=')[1]
 
     if (!token) {
-      console.log(token)
       req.isAuth = false
       return next()
     }

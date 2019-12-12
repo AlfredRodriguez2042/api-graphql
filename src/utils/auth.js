@@ -5,6 +5,11 @@ export const authenticated = req => {
     throw new Error('fail, must be authenticated')
   }
 }
+export const checkAdmin = req => {
+  if (req.user.privilege !== 'admin') {
+    throw new Error('Must be admin to perform that action')
+  }
+}
 
 export const AuthToken = req => {
   const IsAuth = req.headers.authorization
